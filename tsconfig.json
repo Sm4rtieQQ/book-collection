@@ -27,7 +27,7 @@
         "baseUrl": "./resources/js",
         "paths": {
             "@/*": [
-                "resources/js/*"
+                "*"
             ],
         }
     },

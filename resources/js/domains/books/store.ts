@@ -1,34 +1,24 @@
-import axios from 'axios';
-import { ref, computed } from 'vue';
 import type { Book } from 'types';
+import { storeModuleFactory } from '@/services/store';
 
-// state
-const books = ref<Book[]>([]);
+const bookStore = storeModuleFactory('books');
 
-// getters
-export const getAllBooks = computed(() => books.value);
-export const getBookById = (id: Number) => computed(() => books.value.find(book => book.id == id));
+bookStore.actions.getAll();
 
-// actions
-export const fetchBooks = async () => {
-    const { data } = await axios.get('/api/books');
-    if (!data) return;
-    books.value = data;
+export const books = bookStore.getters.all;
+
+export const getBook = (id: number) => {
+    return bookStore.getters.getById(id);
 }
 
-export const createBook = async (newBook: Book) => {
-    const { data } = await axios.post('/api/books', newBook);
-    if (!data) return;
-    books.value = data;
+export const addBook = async (newBook: Book) => {
+    await bookStore.actions.create(newBook);
 }
 
-export const updateBook = async (id: Number, updatedBook: Book) => {
-    const { data } = await axios.put(`/api/books/${id}`, updatedBook);
-    if (!data) return;
-    books.value = data;
+export const updateBook = async (id: number, updatedBook: Book) => {
+    await bookStore.actions.update(id, updatedBook);
 }
 
-export const deleteBook = async (id: Number) => {
-    await axios.delete(`/api/books/${id}`);
-    books.value = books.value.filter(book => book.id !== id);
+export const deleteBook = async (id: number) => {
+    await bookStore.actions.delete(id);
 }

@@ -12,6 +12,14 @@ body {
     @apply m-2;
 }
 
+h2 {
+    @apply text-lg font-bold;
+}
+
+h3 {
+    @apply font-semibold;
+}
+
 td,
 th {
     @apply p-2 text-left;

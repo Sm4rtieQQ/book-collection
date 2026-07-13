@@ -10,7 +10,7 @@ class BookController extends Controller
 {
     public function index()
     {
-        return BookResource::collection(Book::all());
+        return BookResource::collection(Book::orderBy('title')->get());
     }
 
     public function store(StoreBookRequest $request)

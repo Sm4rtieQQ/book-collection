@@ -1,22 +1,30 @@
 <script setup lang="ts">
-import { fetchAuthors, getAllAuthors } from '../store';
+import { authors, deleteAuthor } from '../store';
+import { getMessage } from '@/services/error';
 
-fetchAuthors();
 </script>
 
 
 <template>
     <table>
         <thead>
-        <tr>
-            <th>Author</th>
-        </tr>
+            <tr>
+                <th>Author</th>
+            </tr>
         </thead>
         <tbody>
-        <tr v-for="author in getAllAuthors" :key="author.id">
-            <td>{{ author.name }}</td>
-            <td><RouterLink :to="{name: 'authors.edit', params: {id: author.id}}">Bewerken</RouterLink></td>
-        </tr>
+            <tr>
+                <th class="text-xs text-red-700">{{ getMessage }}</th>
+            </tr>
+            <tr v-for="author in authors" :key="author.id">
+                <td>{{ author.name }}</td>
+                <td>
+                    <RouterLink :to="{ name: 'authors.edit', params: { id: author.id } }">Bewerken</RouterLink>
+                </td>
+                <td>
+                    <button class="cursor-pointer" @click="deleteAuthor(author.id)">Verwijderen</button>
+                </td>
+            </tr>
         </tbody>
     </table>
 </template>

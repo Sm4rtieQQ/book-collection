@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { fetchAuthors, getAllAuthors } from '../../authors/store';
+import { authors } from '@/domains/authors/store';
+import FormError from '@/services/error/FormError.vue';
+import ErrorMessage from '@/services/error/ErrorMessage.vue';
 
-fetchAuthors();
-
-const props = defineProps({ book: Object});
+const props = defineProps({ book: Object });
 
 const emit = defineEmits(['submit']);
 
@@ -16,19 +16,31 @@ const handleSubmit = () => emit('submit', form.value);
 
 
 <template>
-    <form class="grid grid-cols-2 gap-2 max-w-[500px] p-2 bg-slate-50" @submit.prevent="handleSubmit">
+
+    <ErrorMessage />
+
+    <form class="grid grid-cols-[200px_auto] gap-2 p-2 bg-slate-50" @submit.prevent="handleSubmit">
         <label>Titel:</label>
-        <input class="bg-white" v-model="form.title" type="text" required />
+        <div>
+            <input class="bg-white" v-model="form.title" type="text" required />
+            <FormError name="title" />
+        </div>
 
         <label>Samenvatting:</label>
-        <textarea class="min-h-64 bg-white" v-model="form.summary" required></textarea>
+        <div>
+            <textarea class="min-h-64 bg-white" v-model="form.summary" required></textarea>
+            <FormError name="summary" />
+        </div>
 
-        <label>Author:</label>
-        <select class="bg-white" v-model="form.author_id" required>
-            <option v-for="author in getAllAuthors" :key="author.id" :value="author.id">
-                {{ author.name }}
-            </option>
-        </select>
+        <label>Auteur:</label>
+        <div>
+            <select class="bg-white" v-model="form.author_id" required>
+                <option v-for="author in authors" :key="author.id" :value="author.id">
+                    {{ author.name }}
+                </option>
+            </select>
+            <FormError name="author" />
+        </div>
 
         <div class="flex">
             <button class="cursor-pointer bg-slate-200 p-2" type="submit">Opslaan</button>

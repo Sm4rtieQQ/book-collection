@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import Form from '../components/Form.vue';
-import { fetchAuthors, getAuthorById, updateAuthor } from '../store';
+import { authors, getAuthorById, updateAuthor } from '../store';
 import { useRoute, useRouter } from 'vue-router';
 import type { Author } from 'types';
-
-fetchAuthors();
 
 const route = useRoute();
 const router = useRouter();

@@ -13,7 +13,7 @@ const handleSubmit = () => emit('submit', form.value);
 
 
 <template>
-    <form class="grid grid-cols-2 gap-2 max-w-[500px] p-2 bg-slate-50" @submit.prevent="handleSubmit">
+    <form class="grid grid-cols-[200px_auto] gap-2 p-2 bg-slate-50" @submit.prevent="handleSubmit">
         <label>Naam:</label>
         <input class="bg-white" v-model="form.name" type="text" required />
 
