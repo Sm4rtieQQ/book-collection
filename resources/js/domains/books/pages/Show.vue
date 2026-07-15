@@ -9,12 +9,14 @@ const bookId = Number(route.params.id);
 
 const book = getBook(bookId);
 
-console.log(book);
-
 </script>
 
 <template>
     <h2>{{ book.title }}</h2>
     <h3>{{ book.author }}</h3>
     <p>{{ book.summary }}</p>
+
+    <hr class="mb-2" />
+    <h3>Reviews</h3>
+    <p class="text-sm italic">Er zijn nog geen reviews voor dit boek.</p>
 </template>

@@ -7,6 +7,8 @@ export const storeModuleFactory = (moduleName: string) => {
     const getters = {
         all: computed(() => state.value),
         getById: (id: number) => computed(() => state.value[id]),
+        getByForeignId: (foreignId: number) => computed(() =>
+            state.value.filter(item => item.foreignId === foreignId)),
     }
 
     const setters = {

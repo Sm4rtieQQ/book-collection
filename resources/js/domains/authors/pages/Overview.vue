@@ -9,7 +9,7 @@ import { getMessage } from '@/services/error';
     <table>
         <thead>
             <tr>
-                <th>Author</th>
+                <th>Auteur</th>
             </tr>
         </thead>
         <tbody>
