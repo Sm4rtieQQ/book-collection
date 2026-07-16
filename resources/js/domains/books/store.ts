@@ -1,8 +1,7 @@
-import type { Book } from 'types';
+import type { Book } from '@/types';
 import { storeModuleFactory } from '@/services/store';
 
 const bookStore = storeModuleFactory('books');
-const reviewStore = storeModuleFactory('reviews');
 
 bookStore.actions.getAll();
 

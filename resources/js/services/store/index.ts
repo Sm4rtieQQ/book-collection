@@ -7,8 +7,6 @@ export const storeModuleFactory = (moduleName: string) => {
     const getters = {
         all: computed(() => state.value),
         getById: (id: number) => computed(() => state.value[id]),
-        getByForeignId: (foreignId: number) => computed(() =>
-            state.value.filter(item => item.foreignId === foreignId)),
     }
 
     const setters = {
@@ -26,18 +24,29 @@ export const storeModuleFactory = (moduleName: string) => {
             const { data } = await getRequest(moduleName);
             if (!data) return;
             setters.setAll(data);
+            return data;
+        },
+
+        getByFields: async (filters: Record<string, any>) => {
+            const queryString = new URLSearchParams(filters).toString();
+            const { data } = await getRequest(`${moduleName}?${queryString}`);
+            if (!data) return;
+            setters.setAll(data);
+            return data;
         },
 
         create: async (item: any) => {
             const { data } = await postRequest(moduleName, item);
             if (!data) return;
             setters.setAll(data);
+            return data;
         },
 
         update: async (id: number, item: Object) => {
             const { data } = await putRequest(`${moduleName}/${id}`, item);
             if (!data) return;
             setters.setAll(data);
+            return data;
         },
 
         delete: async (id: number) => {

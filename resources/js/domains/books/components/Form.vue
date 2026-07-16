@@ -19,22 +19,22 @@ const handleSubmit = () => emit('submit', form.value);
 
     <ErrorMessage />
 
-    <form class="grid grid-cols-[200px_auto] gap-2 p-2 bg-slate-50" @submit.prevent="handleSubmit">
-        <label>Titel:</label>
+    <form class="grid grid-cols-[120px_auto] gap-2" @submit.prevent="handleSubmit">
+        <label class="font-semibold">Titel:</label>
         <div>
-            <input class="bg-white" v-model="form.title" type="text" required />
+            <input class="border w-64" v-model="form.title" type="text" required />
             <FormError name="title" />
         </div>
 
-        <label>Samenvatting:</label>
+        <label class="font-semibold">Samenvatting:</label>
         <div>
-            <textarea class="min-h-64 bg-white" v-model="form.summary" required></textarea>
+            <textarea class="border w-64 min-h-64 " v-model="form.summary" required></textarea>
             <FormError name="summary" />
         </div>
 
-        <label>Auteur:</label>
+        <label class="font-semibold">Auteur:</label>
         <div>
-            <select class="bg-white" v-model="form.author_id" required>
+            <select class="border w-64" v-model="form.author_id" required>
                 <option v-for="author in authors" :key="author.id" :value="author.id">
                     {{ author.name }}
                 </option>
@@ -43,7 +43,7 @@ const handleSubmit = () => emit('submit', form.value);
         </div>
 
         <div class="flex">
-            <button class="cursor-pointer bg-slate-200 p-2" type="submit">Opslaan</button>
+            <button class="border-2 font-bold cursor-pointer p-2" type="submit">Opslaan</button>
         </div>
     </form>
 </template>

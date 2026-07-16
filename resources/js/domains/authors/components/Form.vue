@@ -13,12 +13,12 @@ const handleSubmit = () => emit('submit', form.value);
 
 
 <template>
-    <form class="grid grid-cols-[200px_auto] gap-2 p-2 bg-slate-50" @submit.prevent="handleSubmit">
-        <label>Naam:</label>
-        <input class="bg-white" v-model="form.name" type="text" required />
+    <form class="grid grid-cols-[120px_auto]" @submit.prevent="handleSubmit">
+        <label class="font-semibold">Naam:</label>
+        <input class="border w-64" v-model="form.name" type="text" required />
 
         <div class="flex">
-            <button class="cursor-pointer bg-slate-200 p-2" type="submit">Opslaan</button>
+            <button class="cursor-pointer border-2 p-2 font-bold" type="submit">Opslaan</button>
         </div>
     </form>
 </template>

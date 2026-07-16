@@ -12,7 +12,7 @@ export const getAuthorById = (id: number) => {
 }
 
 export const addAuthor = async (newAuthor: Author) => {
-    await authorStore.actions.create(newAuthor)
+    await authorStore.actions.create(newAuthor);
 }
 
 export const updateAuthor = async (id: number, updatedAuthor: Author) => {

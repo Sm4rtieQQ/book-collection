@@ -14,15 +14,16 @@ http.interceptors.request.use(
         destroyErrors();
         destroyMessage();
         return config;
-    }
-)
+    },
+    error => Promise.reject(error)
+);
 
 http.interceptors.response.use(
     response => response,
     error => {
         if (error.response && error.response.status === 422) {
             setErrorBag(error.response.data.errors);
-            setMessage(error.response.data.message)
+            setMessage(error.response.data.message);
         }
         return Promise.reject(error);
     }
