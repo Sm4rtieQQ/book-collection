@@ -21,7 +21,7 @@ const review = ref({
 
 const handleSubmit = async (data: Review) => {
     await addReview(data);
-    router.push({ name: 'books.show' });
+    router.push({ name: 'books.show', params: { id: bookId } });
 }
 
 </script>

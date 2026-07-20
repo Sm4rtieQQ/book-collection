@@ -8,7 +8,7 @@ class StoreReviewRequest extends BaseFormRequest
     {
         return [
             'text' => 'required|string|max:255',
-            'book_id' => 'required',
+            'book_id' => 'required|exists:books,id',
         ];
     }
 }

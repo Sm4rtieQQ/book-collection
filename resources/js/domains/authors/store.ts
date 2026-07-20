@@ -1,5 +1,6 @@
 import type { Author } from 'types';
 import { storeModuleFactory } from '@/services/store';
+import { ComputedRef } from 'vue';
 
 const authorStore = storeModuleFactory('authors');
 
@@ -9,6 +10,10 @@ export const authors = authorStore.getters.all;
 
 export const getAuthorById = (id: number) => {
     return authorStore.getters.getById(id);
+}
+
+export const getAuthorsSortedBy = (columnName: string): ComputedRef<Author[]> => {
+    return authorStore.getters.sortedBy(columnName) as ComputedRef<Author[]>;
 }
 
 export const addAuthor = async (newAuthor: Author) => {

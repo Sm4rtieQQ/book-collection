@@ -11,7 +11,7 @@ class AuthorController extends Controller
 {
     public function index()
     {
-        return AuthorResource::collection(Author::orderBy('name')->get());
+        return AuthorResource::collection(Author::all());
     }
 
     public function store(StoreAuthorRequest $request)

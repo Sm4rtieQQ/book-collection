@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { authors, deleteAuthor } from '../store';
+import { getAuthorsSortedBy, deleteAuthor } from '../store';
 import { getMessage } from '@/services/error';
 
+const authors = getAuthorsSortedBy('name');
 </script>
 
 

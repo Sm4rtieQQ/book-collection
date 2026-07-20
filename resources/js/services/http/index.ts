@@ -9,6 +9,11 @@ const http = axios.create({
     }
 });
 
+export const getRequest = (endpoint: any) => http.get(endpoint);
+export const postRequest = (endpoint: any, data: any) => http.post(endpoint, data);
+export const putRequest = (endpoint: any, data: any) => http.put(endpoint, data);
+export const deleteRequest = (endpoint: any) => http.delete(endpoint);
+
 http.interceptors.request.use(
     config => {
         destroyErrors();
@@ -28,8 +33,3 @@ http.interceptors.response.use(
         return Promise.reject(error);
     }
 )
-
-export const getRequest = (endpoint: any) => http.get(endpoint);
-export const postRequest = (endpoint: any, data: any) => http.post(endpoint, data);
-export const putRequest = (endpoint: any, data: any) => http.put(endpoint, data);
-export const deleteRequest = (endpoint: any) => http.delete(endpoint);

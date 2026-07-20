@@ -10,9 +10,15 @@ const message = ref('');
 export const getErrorBag = computed(() => errorBag.value);
 export const getMessage = computed(() => message.value);
 
-export const getErrorByProperty = (property: string) => computed(() => errorBag.value[property]);
+export const getErrorByProperty = (property: string) =>
+    computed(() => {
+        const errors = errorBag.value[property];
+        return Array.isArray(errors) && errors.length > 0 ? errors[0] : '';
+    });
 
-export const setErrorBag = (bag: ErrorBag) => (errorBag.value = bag);
+export const setErrorBag = (bag: ErrorBag) => {
+    errorBag.value = bag || {};
+};
 export const setMessage = (newMessage: string) => {
     message.value = newMessage || 'Er is een fout opgetreden.';
 }

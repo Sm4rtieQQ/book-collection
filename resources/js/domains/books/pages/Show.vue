@@ -10,17 +10,23 @@ const route = useRoute();
 
 const bookId = Number(route.params.id);
 
-const book = getBook(bookId);
+let book = ref(getBook(bookId));
 const reviews = ref<Review[]>([]);
 
 onMounted(async () => {
+    book = getBook(bookId);
     reviews.value = await getBookReviews(bookId);
 });
+
+const handleDeleteReview = async (reviewId: number) => {
+    await deleteReview(reviewId);
+    reviews.value = await getBookReviews(bookId);
+}
 
 </script>
 
 <template>
-    <Summary :book="book" />
+    <Summary v-if="book" :book="book" />
     <div>
         <h3>Recensies</h3>
         <div v-if="reviews.length">
@@ -30,7 +36,7 @@ onMounted(async () => {
                     <div class="text-center">
                         <RouterLink :to="{ name: 'reviews.edit', params: { bookId: book.id, reviewId: review.id } }">
                             Bewerken</RouterLink> |
-                        <a class="cursor-pointer" @click="deleteReview(review.id)">Verwijderen</a>
+                        <button class="cursor-pointer" @click="handleDeleteReview(review.id)">Verwijderen</button>
                     </div>
                 </div>
                 <hr class="mb-4" />

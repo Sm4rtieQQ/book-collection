@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import ErrorMessage from '@/services/error/ErrorMessage.vue';
-import { books, deleteBook } from '../store';
+import { deleteBook, getBooksSortedBy } from '../store';
+
+const books = getBooksSortedBy('title');
 
 </script>
 
